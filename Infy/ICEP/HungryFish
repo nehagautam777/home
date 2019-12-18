@@ -1,0 +1,44 @@
+# string = "10#9,20,25,100"
+# string = "3#25,20,100,400,500"
+string = "50#25,20,9,100"
+result = 0
+attacker = int(string.split("#")[0])
+arr = [int(i) for i in (string.split("#")[1]).split(",")]
+arr.sort()
+minimum = arr[0]
+
+
+def fun(arr, attacker, result):
+    if attacker > arr[0] and len(arr) != 1:
+        while attacker != min(arr):
+            print(attacker)
+            if attacker in arr:
+                arr.remove(attacker)
+            attacker = arr[0] + attacker
+            arr.append(attacker)
+            arr.remove(arr[0])
+            arr.sort()
+            print(arr)
+        #     if len(arr) != 1:
+        #         fun(arr, attacker, result)
+    if attacker <= arr[0]:
+        if len(arr) == 1:
+            return result
+        arr.append(attacker * 2 - 1)
+        if attacker in arr:
+            arr.remove(attacker)
+        attacker = attacker * 2 - 1
+        result += 1
+        arr.sort()
+        print(arr)
+        # fun(arr, attacker, result)
+    if len(arr) != 1:
+        result = fun(arr, attacker, result)
+    return result
+
+
+print(fun(arr, attacker, result))
+# print(attacker)
+# print(arr)
+# print(minimum)
+# print(result)
