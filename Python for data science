@@ -1,0 +1,3 @@
+print(df[df.sum(axis = 1) % 2 == 0])
+# new_df = df.apply(lambda x : x.sum() % 2 == 0)
+print(df[(df.apply(np.sum,axis = 1) % 2 == 0)])
